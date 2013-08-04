@@ -35,7 +35,7 @@ public class ModuleLauncher extends BaseModuleLauncher
 
     @Override
     public String getVersion() {
-        return Version.getVersion();
+        return "0.1";
     }
     
     public void invokeGui()
@@ -51,11 +51,6 @@ public class ModuleLauncher extends BaseModuleLauncher
         AppConfigDefinitions.registerDefinitions();
 	FrameWorkConfigDefinitions.registerDefinitions();
 
-        if( Setup.is_win_system() )
-        {
-            root.registerPlugin(new at.redeye.Plugins.ShellExec.Plugin());
-        }
-
         setLookAndFeel(root);
 
         configureLogging();
@@ -66,8 +61,17 @@ public class ModuleLauncher extends BaseModuleLauncher
         closeSplash();
 
         mainwin.setVisible(true);
+        mainwin.toFront();
         
     }
 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+
+        new ModuleLauncher(args).invokeGui();
+
+    }    
     
 }
